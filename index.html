@@ -47,11 +47,49 @@
         [{v:'Audit', f:'<div><b>Reza Firmansyah</b><br>Manager Audit</div>'}, 'SPI', '']
       ]);
       charts.spi = {data: dataSPI};
+
+      // ===== Chart Sekretariat Perusahaan (SEKPER) =====
+      var dataSekper = new google.visualization.DataTable();
+      dataSekper.addColumn('string', 'Name');
+      dataSekper.addColumn('string', 'Manager');
+      dataSekper.addColumn('string', 'Tooltip');
+
+      dataSekper.addRows([
+        // Level 1
+        [{v:'dirut', f:'<div style="background:#007bff;color:#fff;padding:8px;border-radius:6px"><b>Direktur Utama</b></div>'}, '', 'Direktur Utama'],
+
+        // Level 2
+        [{v:'sekper', f:'<div style="background:#80cc66;color:#000;padding:8px;border-radius:6px"><b>Kepala Divisi Sekretariat Perusahaan</b></div>'}, 'dirut', 'Kepala Divisi Sekretariat Perusahaan'],
+
+        // Level 3
+        [{v:'sub1', f:'<div style="background:#d9d9d9;padding:8px;border-radius:6px"><b>Kepala Sub Divisi Kesekretariatan, Pengelolaan Data dan Informasi</b></div>'}, 'sekper', ''],
+        [{v:'sub2', f:'<div style="background:#d9d9d9;padding:8px;border-radius:6px"><b>Kepala Sub Divisi Humas dan Protokoler</b></div>'}, 'sekper', ''],
+
+        // Level 4 - Subdivisi 1
+        [{v:'asisten_data', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Pengelolaan Data dan Informasi</b></div>'}, 'sub1', ''],
+        [{v:'asisten_sekret', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Kesekretariatan</b></div>'}, 'sub1', ''],
+
+        // Level 5 - Subdivisi 1 Detail
+        ['staf_data', 'asisten_data', 'Staf Pengelolaan Data dan Informasi'],
+        ['staf_sekret', 'asisten_sekret', 'Staf Kesekretariatan'],
+        ['staf_dir', 'asisten_sekret', 'Staf Sekretaris Direksi'],
+        ['staf_sevp', 'asisten_sekret', 'Staf Sekretaris SEVP'],
+
+        // Level 4 - Subdivisi 2
+        [{v:'asisten_humas', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Humas</b></div>'}, 'sub2', ''],
+        [{v:'asisten_protokol', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Protokoler</b></div>'}, 'sub2', ''],
+
+        // Level 5 - Subdivisi 2 Detail
+        ['staf_humas', 'asisten_humas', 'Staf Humas'],
+        ['staf_protokol', 'asisten_protokol', 'Staf Protokoler']
+      ]);
+
+      charts.sekper = {data: dataSekper};
     }
 
     function showChart(type) {
       var chartDiv = document.getElementById('chart_div');
-      chartDiv.innerHTML = ''; // Hapus isi sebelumnya
+      chartDiv.innerHTML = ''; // Bersihkan isi sebelumnya
       var chart = new google.visualization.OrgChart(chartDiv);
       chart.draw(charts[type].data, {allowHtml:true, size:'medium'});
     }
@@ -102,8 +140,11 @@
     <button onclick="showChart('sdm')">SDM</button>
     <button onclick="showChart('sbk')">SBK</button>
     <button onclick="showChart('spi')">SPI</button>
+    <button onclick="showChart('sekper')">Sekretariat Perusahaan</button>
   </div>
 
-  <div id="chart_div"><p style="text-align:center; color:#888;">Silakan pilih kategori di atas untuk melihat bagan organisasi</p></div>
+  <div id="chart_div">
+    <p style="text-align:center; color:#888;">Silakan pilih kategori di atas untuk melihat bagan organisasi</p>
+  </div>
 </body>
 </html>
