@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Struktur Organisasi</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {packages:["orgchart"]});
+    google.charts.setOnLoadCallback(initCharts);
+
+    let charts = {};
+
+    function initCharts() {
+      // ===== Chart SDM =====
+      var dataSDM = new google.visualization.DataTable();
+      dataSDM.addColumn('string', 'Name');
+      dataSDM.addColumn('string', 'Manager');
+      dataSDM.addColumn('string', 'Tooltip');
+      dataSDM.addRows([
+        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, '', ''],
+        [{v:'SDM', f:'<div><b>Rina Pratiwi</b><br>Direktur SDM</div>'}, 'DirUt', ''],
+        [{v:'HR', f:'<div><b>Dedi Saputra</b><br>Kepala HR</div>'}, 'SDM', ''],
+        [{v:'GA', f:'<div><b>Siti Rahma</b><br>Kepala Umum</div>'}, 'SDM', '']
+      ]);
+      charts.sdm = {data: dataSDM};
+
+      // ===== Chart SBK =====
+      var dataSBK = new google.visualization.DataTable();
+      dataSBK.addColumn('string', 'Name');
+      dataSBK.addColumn('string', 'Manager');
+      dataSBK.addColumn('string', 'Tooltip');
+      dataSBK.addRows([
+        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, '', ''],
+        [{v:'SBK', f:'<div><b>Fajar Hidayat</b><br>Direktur SBK</div>'}, 'DirUt', ''],
+        [{v:'Prod', f:'<div><b>Ali Wijaya</b><br>Kepala Produksi</div>'}, 'SBK', '']
+      ]);
+      charts.sbk = {data: dataSBK};
+
+      // ===== Chart SPI =====
+      var dataSPI = new google.visualization.DataTable();
+      dataSPI.addColumn('string', 'Name');
+      dataSPI.addColumn('string', 'Manager');
+      dataSPI.addColumn('string', 'Tooltip');
+      dataSPI.addRows([
+        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, '', ''],
+        [{v:'SPI', f:'<div><b>Nia Lestari</b><br>Direktur SPI</div>'}, 'DirUt', ''],
+        [{v:'Audit', f:'<div><b>Reza Firmansyah</b><br>Manager Audit</div>'}, 'SPI', '']
+      ]);
+      charts.spi = {data: dataSPI};
+    }
+
+    function showChart(type) {
+      var chartDiv = document.getElementById('chart_div');
+      chartDiv.innerHTML = ''; // Hapus isi sebelumnya
+      var chart = new google.visualization.OrgChart(chartDiv);
+      chart.draw(charts[type].data, {allowHtml:true, size:'medium'});
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #2b3e50;
+      margin-bottom: 20px;
+    }
+    .menu {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .menu button {
+      background: #2b3e50;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s;
+    }
+    .menu button:hover {
+      background: #3c5a77;
+    }
+    #chart_div {
+      width: 100%;
+      text-align: center;
+      overflow-x: auto;
+      min-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Struktur Organisasi</h2>
+
+  <div class="menu">
+    <button onclick="showChart('sdm')">SDM</button>
+    <button onclick="showChart('sbk')">SBK</button>
+    <button onclick="showChart('spi')">SPI</button>
+  </div>
+
+  <div id="chart_div"><p style="text-align:center; color:#888;">Silakan pilih kategori di atas untuk melihat bagan organisasi</p></div>
+</body>
+</html>
