@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="id">
 <head>
   <meta charset="utf-8">
   <title>Struktur Organisasi</title>
@@ -17,12 +17,13 @@
       dataSDM.addColumn('string', 'Manager');
       dataSDM.addColumn('string', 'Tooltip');
       dataSDM.addRows([
-        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, '', ''],
+        [{v:'SDM_DIV', f:'<div style="background:#2b3e50;color:#fff;padding:10px;border-radius:6px"><b>DIVISI SDM</b></div>'}, '', 'Divisi SDM'],
+        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, 'SDM_DIV', ''],
         [{v:'SDM', f:'<div><b>Rina Pratiwi</b><br>Direktur SDM</div>'}, 'DirUt', ''],
         [{v:'HR', f:'<div><b>Dedi Saputra</b><br>Kepala HR</div>'}, 'SDM', ''],
         [{v:'GA', f:'<div><b>Siti Rahma</b><br>Kepala Umum</div>'}, 'SDM', '']
       ]);
-      charts.sdm = {data: dataSDM};
+      charts.sdm = {data: dataSDM, title: "Divisi SDM"};
 
       // ===== Chart SBK =====
       var dataSBK = new google.visualization.DataTable();
@@ -30,11 +31,12 @@
       dataSBK.addColumn('string', 'Manager');
       dataSBK.addColumn('string', 'Tooltip');
       dataSBK.addRows([
-        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, '', ''],
+        [{v:'SBK_DIV', f:'<div style="background:#2b3e50;color:#fff;padding:10px;border-radius:6px"><b>DIVISI SBK</b></div>'}, '', 'Divisi SBK'],
+        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, 'SBK_DIV', ''],
         [{v:'SBK', f:'<div><b>Fajar Hidayat</b><br>Direktur SBK</div>'}, 'DirUt', ''],
         [{v:'Prod', f:'<div><b>Ali Wijaya</b><br>Kepala Produksi</div>'}, 'SBK', '']
       ]);
-      charts.sbk = {data: dataSBK};
+      charts.sbk = {data: dataSBK, title: "Divisi SBK"};
 
       // ===== Chart SPI =====
       var dataSPI = new google.visualization.DataTable();
@@ -42,109 +44,214 @@
       dataSPI.addColumn('string', 'Manager');
       dataSPI.addColumn('string', 'Tooltip');
       dataSPI.addRows([
-        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, '', ''],
+        [{v:'SPI_DIV', f:'<div style="background:#2b3e50;color:#fff;padding:10px;border-radius:6px"><b>DIVISI SPI</b></div>'}, '', 'Divisi SPI'],
+        [{v:'DirUt', f:'<div><b>Budi Santoso</b><br>Direktur Utama</div>'}, 'SPI_DIV', ''],
         [{v:'SPI', f:'<div><b>Nia Lestari</b><br>Direktur SPI</div>'}, 'DirUt', ''],
         [{v:'Audit', f:'<div><b>Reza Firmansyah</b><br>Manager Audit</div>'}, 'SPI', '']
       ]);
-      charts.spi = {data: dataSPI};
+      charts.spi = {data: dataSPI, title: "Divisi SPI"};
 
       // ===== Chart Sekretariat Perusahaan (SEKPER) =====
       var dataSekper = new google.visualization.DataTable();
-      dataSekper.addColumn('string', 'Name');
-      dataSekper.addColumn('string', 'Manager');
-      dataSekper.addColumn('string', 'Tooltip');
+dataSekper.addColumn('string', 'Name');
+dataSekper.addColumn('string', 'Manager');
+dataSekper.addColumn('string', 'Tooltip');
+dataSekper.addRows([
+  // Puncak
+  [{v:'dirut', f:'<div style="background:#007bff;color:#fff;padding:10px;border-radius:6px; width:200px;"><b>Direktur Utama</b></div>'}, '', 'Direktur Utama'],
 
-      dataSekper.addRows([
-        // Level 1
-        [{v:'dirut', f:'<div style="background:#007bff;color:#fff;padding:8px;border-radius:6px"><b>Direktur Utama</b></div>'}, '', 'Direktur Utama'],
+  // Kepala Divisi
+  [{v:'sekper', f:'<div style="background:#4caf50;color:#fff;padding:10px;border-radius:6px; width:200px;"><b>Kepala Divisi Sekretariat Perusahaan</b></div>'}, 'dirut', 'Kepala Divisi Sekretariat Perusahaan'],
 
-        // Level 2
-        [{v:'sekper', f:'<div style="background:#80cc66;color:#000;padding:8px;border-radius:6px"><b>Kepala Divisi Sekretariat Perusahaan</b></div>'}, 'dirut', 'Kepala Divisi Sekretariat Perusahaan'],
+  // Dua Subdivisi
+  [{v:'sub_kesek', f:'<div style="background:#d9d9d9;padding:8px;border-radius:6px; width:200px; height:70px;"><b>Kepala Sub Divisi Kesekretariatan, Pengelolaan Data dan Informasi</b></div>'}, 'sekper', 'Kepala Sub Divisi Kesekretariatan, Pengelolaan Data dan Informasi'],
+  [{v:'sub_humas', f:'<div style="background:#d9d9d9;padding:8px;border-radius:6px; width:200px; height:70px;"><b>Kepala Sub Divisi Humas dan Protokoler</b></div>'}, 'sekper', 'Kepala Sub Divisi Humas dan Protokoler'],
 
-        // Level 3
-        [{v:'sub1', f:'<div style="background:#d9d9d9;padding:8px;border-radius:6px"><b>Kepala Sub Divisi Kesekretariatan, Pengelolaan Data dan Informasi</b></div>'}, 'sekper', ''],
-        [{v:'sub2', f:'<div style="background:#d9d9d9;padding:8px;border-radius:6px"><b>Kepala Sub Divisi Humas dan Protokoler</b></div>'}, 'sekper', ''],
+  // Asisten di bawah Sub Divisi Kesekretariatan
+  [{v:'asisten_data', f:'<div style="background:#ffe5cc;padding:8px;border-radius:6px;height:90px;"><b>Asisten Pengelolaan Data dan Informasi</b></div>'}, 'sub_kesek', 'Asisten Pengelolaan Data dan Informasi'],
+  [{v:'asisten_kesek', f:'<div style="background:#ffe5cc;padding:8px;border-radius:6px;height:90px;"><b>Asisten Kesekretariatan</b></div>'}, 'sub_kesek', 'Asisten Kesekretariatan'],
 
-        // Level 4 - Subdivisi 1
-        [{v:'asisten_data', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Pengelolaan Data dan Informasi</b></div>'}, 'sub1', ''],
-        [{v:'asisten_sekret', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Kesekretariatan</b></div>'}, 'sub1', ''],
+  // Asisten di bawah Sub Divisi Humas
+  [{v:'asisten_humas', f:'<div style="background:#ffe5cc;padding:8px;border-radius:6px;height:90px;"><b>Asisten Humas</b></div>'}, 'sub_humas', 'Asisten Humas'],
+  [{v:'asisten_protokol', f:'<div style="background:#ffe5cc;padding:8px;border-radius:6px;height:90px;"><b>Asisten Protokoler</b></div>'}, 'sub_humas', 'Asisten Protokoler'],
+  
+ // Staf di bawah Asisten Data dan Kesekretariatan
+[{v:'staf_data', f:'<div style="padding:6px;border-radius:4px;">Staf Pengelolaan Data dan Informasi</div>'}, 'asisten_data', 'Staf Pengelolaan Data dan Informasi'],
+[{v:'staf_kesek', f:'<div style="padding:6px;border-radius:4px;">Staf Kesekretariatan</div>'}, 'asisten_kesek', 'Staf Kesekretariatan'],
+[{v:'staf_direksi', f:'<div style="padding:6px;border-radius:4px;">Staf Sekretaris Direksi</div>'}, 'asisten_kesek', 'Staf Sekretaris Direksi'],
+[{v:'staf_sevp', f:'<div style="padding:6px;border-radius:4px;">Staf Sekretaris SEVP</div>'}, 'asisten_kesek', 'Staf Sekretaris SEVP'],
 
-        // Level 5 - Subdivisi 1 Detail
-        ['staf_data', 'asisten_data', 'Staf Pengelolaan Data dan Informasi'],
-        ['staf_sekret', 'asisten_sekret', 'Staf Kesekretariatan'],
-        ['staf_dir', 'asisten_sekret', 'Staf Sekretaris Direksi'],
-        ['staf_sevp', 'asisten_sekret', 'Staf Sekretaris SEVP'],
+// Staf di bawah Humas dan Protokol
+[{v:'staf_humas', f:'<div style="padding:6px;border-radius:4px;">Staf Humas</div>'}, 'asisten_humas', 'Staf Humas'],
+[{v:'staf_protokol', f:'<div style="padding:6px;border-radius:4px;">Staf Protokoler</div>'}, 'asisten_protokol', 'Staf Protokoler']
 
-        // Level 4 - Subdivisi 2
-        [{v:'asisten_humas', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Humas</b></div>'}, 'sub2', ''],
-        [{v:'asisten_protokol', f:'<div style="background:#fde9d9;padding:8px;border-radius:6px; height:50px;"><b>Asisten Protokoler</b></div>'}, 'sub2', ''],
+]);
 
-        // Level 5 - Subdivisi 2 Detail
-        ['staf_humas', 'asisten_humas', 'Staf Humas'],
-        ['staf_protokol', 'asisten_protokol', 'Staf Protokoler']
-      ]);
+charts.sekper = {data: dataSekper, title: "Sekretariat Perusahaan"};
 
-      charts.sekper = {data: dataSekper};
     }
 
     function showChart(type) {
       var chartDiv = document.getElementById('chart_div');
-      chartDiv.innerHTML = ''; // Bersihkan isi sebelumnya
+      var chartTitle = document.getElementById('chart_title');
+      chartDiv.innerHTML = '';
+      chartTitle.innerText = charts[type]?.title || 'Struktur Organisasi';
+
       var chart = new google.visualization.OrgChart(chartDiv);
       chart.draw(charts[type].data, {allowHtml:true, size:'medium'});
     }
   </script>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f8fafc;
+      background: #f9fafb;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
-    h2 {
-      text-align: center;
-      color: #2b3e50;
-      margin-bottom: 20px;
+
+    /* Navbar clean putih */
+    .navbar {
+      background-color: #ffffff !important;
+      border-bottom: 1px solid #dee2e6;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-    .menu {
-      text-align: center;
-      margin-bottom: 25px;
+
+    .navbar-brand {
+      color: #2b3e50 !important;
+      font-weight: 600;
     }
-    .menu button {
-      background: #2b3e50;
-      color: white;
+
+    .dropdown-toggle {
+      color: #fff !important;
+      background: #2b3e50 !important;
       border: none;
-      padding: 10px 18px;
+      padding: 8px 16px;
       border-radius: 6px;
-      margin: 5px;
-      cursor: pointer;
       font-size: 15px;
       transition: background 0.3s;
     }
-    .menu button:hover {
-      background: #3c5a77;
+
+    .dropdown-toggle:hover {
+      background: #3d536b !important;
     }
+
+    .dropdown-menu {
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    h3 {
+      text-align: center;
+      color: #2b3e50;
+      margin-top: 25px;
+      font-weight: 600;
+    }
+
+    h5#chart_title {
+      text-align: center;
+      color: #3d536b;
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
     #chart_div {
       width: 100%;
       text-align: center;
       overflow-x: auto;
-      min-height: 200px;
+      min-height: 250px;
+      padding-bottom: 40px;
     }
   </style>
 </head>
+
 <body>
-  <h2>Struktur Organisasi</h2>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse show" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown me-2">
+            <button class="dropdown-toggle" data-bs-toggle="dropdown">Head Office</button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" onclick="showChart('spi')">Satuan Pengawasan Intern</a></li>
+              <li><a class="dropdown-item" href="#" onclick="showChart('sdm')">SDM</a></li>
+              <li><a class="dropdown-item" href="#" onclick="showChart('sbk')">SBK</a></li>
+              
+              
+            <li><a class="dropdown-item" href="#" onclick="showChart('sekper')">Sekretariat Perusahaan</a></li>
+            <li><a class="dropdown-item" href="#">Divisi Satuan Pengawasan Intern</a></li>
+            <li><a class="dropdown-item" href="#">Divisi Teknik dan Pengolahan</a></li>
+            <li><a class="dropdown-item" href="#">Divisi Tebu Rakyat dan Tebang Muat Angkut</a></li>
+            <li><a class="dropdown-item" href="#">Divisi Budidaya</a></li>
+            <li><a class="dropdown-item" href="#">Divisi Perbendaharaan dan Anggaran </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Akuntansi dan Perpajakan </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Supporting TR </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Operasional SDM </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Pengembangan SDM dan Budaya </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Pemasaran dan Pelanggan </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Pengadaan </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Hubungan Kelembagaan dan Hukum</a></li>
+            <li><a class="dropdown-item" href="#">Divisi Manajemen Risiko </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Strategi Bisnis dan Keberlanjutan </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Penelitian dan Pengembangan </a></li>
+            <li><a class="dropdown-item" href="#">Divisi Hubungan Kelembagaan dan Hukum</a></li>
+            <li><a class="dropdown-item" href="#">Digital Transformation Officer </a></li>
 
-  <div class="menu">
-    <button onclick="showChart('sdm')">SDM</button>
-    <button onclick="showChart('sbk')">SBK</button>
-    <button onclick="showChart('spi')">SPI</button>
-    <button onclick="showChart('sekper')">Sekretariat Perusahaan</button>
-  </div>
+            </ul>
+          </li>
 
+          <li class="nav-item dropdown">
+            <button class="dropdown-toggle" data-bs-toggle="dropdown">Pabrik Gula</button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">PG Sei Semayang</a></li>
+              <li><a class="dropdown-item" href="#">PG Bunga Mayang</a></li>
+              <li><a class="dropdown-item" href="#">PG Cinta Manis</a></li>
+              <li><a class="dropdown-item" href="#">PG Pangkah</a></li>
+              <li><a class="dropdown-item" href="#">PG Sragi</a></li>
+              <li><a class="dropdown-item" href="#">PG Rendeng</a></li>
+              <li><a class="dropdown-item" href="#">PG Mojo</a></li>
+              <li><a class="dropdown-item" href="#">PG Tasikmadu</a></li>
+              <li><a class="dropdown-item" href="#">PG Kremboong</a></li>
+              <li><a class="dropdown-item" href="#">PG Gempolkrep</a></li>
+              <li><a class="dropdown-item" href="#">PG Djombang Baru</a></li>
+              <li><a class="dropdown-item" href="#">PG Tjoekir</a></li>
+              <li><a class="dropdown-item" href="#">PG Lestari</a></li>
+              <li><a class="dropdown-item" href="#">PG Meritjan</a></li>
+              <li><a class="dropdown-item" href="#">PG Pesantren Baru</a></li>
+              <li><a class="dropdown-item" href="#">PG Ngadiredjo</a></li>
+              <li><a class="dropdown-item" href="#">PG Modjopanggoong</a></li>
+              <li><a class="dropdown-item" href="#">PG Soedhono</a></li>
+              <li><a class="dropdown-item" href="#">PG Poerwodadie</a></li>
+              <li><a class="dropdown-item" href="#">PG Redjosarie</a></li>
+              <li><a class="dropdown-item" href="#">PG Pagottan</a></li>
+              <li><a class="dropdown-item" href="#">PG Kedawoeng</a></li>
+              <li><a class="dropdown-item" href="#">PG Wonolangan</a></li>
+              <li><a class="dropdown-item" href="#">PG Gending</a></li>
+              <li><a class="dropdown-item" href="#">PG Djatiroto</a></li>
+              <li><a class="dropdown-item" href="#">PG Semboro</a></li>
+              <li><a class="dropdown-item" href="#">PG Wringin Anom</a></li>
+              <li><a class="dropdown-item" href="#">PG Pandjie</a></li>
+              <li><a class="dropdown-item" href="#">PG Assembagoes</a></li>
+              <li><a class="dropdown-item" href="#">PG Pradjekan</a></li>
+              <li><a class="dropdown-item" href="#">PG Glenmore</a></li>
+              <li><a class="dropdown-item" href="#">PG Bone</a></li>
+              <li><a class="dropdown-item" href="#">PG Camming</a></li>
+              <li><a class="dropdown-item" href="#">PG Takalar</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <h3>Struktur Organisasi</h3>
+  <h5 id="chart_title">Silakan pilih Divisi atau PG</h5>
   <div id="chart_div">
-    <p style="text-align:center; color:#888;">Silakan pilih kategori di atas untuk melihat bagan organisasi</p>
+    <p style="text-align:center; color:#888;">Bagan struktur organisasi ditampilkan sesuai Divisi atau PG</p>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
