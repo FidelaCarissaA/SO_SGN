@@ -1,10 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="utf-8">
-  <title>Struktur Organisasi</title>
-
+  <meta charset="UTF-8">
+  <title>Struktur SPI Multi-Parent Lengkap</title>
+  <script src="https://unpkg.com/gojs/release/go.js"></script>
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -47,22 +46,25 @@
       font-size: 14px;
     }
 
-    h3 {
+    h4 {
       text-align: center;
       color: #052515;
       margin-top: 25px;
       font-weight: 600;
     }
+     
+    h6{
+      text-align: center;
+    }
 
-   p{
-    color: #888;
-    text-align:center;
-   }
+    /* bagan SO */
+    html, body { height: 100%; margin: 0; }
+    #myDiagramDiv { width: 100%; height: 95vh; border: 1px solid #ccc; }
   </style>
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-lg">
+
+ <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <div class="collapse navbar-collapse show" id="navbarNav">
         <ul class="navbar-nav">
@@ -137,11 +139,112 @@
     </div>
   </nav>
 
-  <h3>Struktur Organisasi</h3>
-  <p>Silakan pilih Divisi atau Pabrik Gula untuk melihat struktur organisasinya.</p>
+<h4>Struktur Organisasi</h4>
+ 
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<h6>Struktur Satuan Pengawasan Intern (SPI)</h6>
+<div id="myDiagramDiv"></div>
+
+ <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function init() {
+  const $ = go.GraphObject.make;
+
+  const diagram = $(go.Diagram, "myDiagramDiv", {
+    layout: $(go.LayeredDigraphLayout, { 
+      direction: 90,       // arah vertikal
+      layerSpacing: 50,    // 🔧 jarak antar level (semakin kecil semakin rapat)
+      columnSpacing: 40    // jarak antar kolom agar tetap rapi
+    }),
+    "undoManager.isEnabled": true
+  });
+
+  // === Template node ===
+  diagram.nodeTemplate =
+    $(go.Node, "Auto",
+      $(go.Shape, "RoundedRectangle",
+        new go.Binding("fill", "color"),
+        { strokeWidth: 0, portId: "", fromLinkable: true, toLinkable: true }),
+      $(go.TextBlock,
+        { 
+          margin: 8, 
+          stroke: "white", 
+          font: "bold 12px Poppins, sans-serif", 
+          wrap: go.TextBlock.WrapFit, 
+          width: 160, 
+          textAlign: "center" 
+        },
+        new go.Binding("text", "key"))
+    );
+
+  // === Template garis ===
+  diagram.linkTemplate =
+    $(go.Link,
+      { routing: go.Link.Orthogonal, corner: 5 },
+      $(go.Shape, { strokeWidth: 1.5, stroke: "#555" })
+    );
+
+  // === Data node ===
+  const nodeDataArray = [
+    { key: "Direktur Utama", color: "#007bff" },
+    { key: "Kepala Divisi SPI", color: "#4caf50" },
+
+    { key: "Kepala Subdivisi Tim 1", color: "#9e9e9e" },
+    { key: "Kepala Subdivisi Tim 2", color: "#9e9e9e" },
+    { key: "Kepala Subdivisi Audit", color: "#9e9e9e" },
+    { key: "Kepala Subdivisi Tim 3", color: "#9e9e9e" },
+
+    { key: "Asisten Tim 1-A", color: "#ff9800" },
+    { key: "Asisten Tim 1-B", color: "#ff9800" },
+    { key: "Asisten Tim 2-A", color: "#ff9800" },
+    { key: "Asisten Tim 2-B", color: "#ff9800" },
+    { key: "Asisten Audit-A", color: "#ff9800" },
+    { key: "Asisten Audit-B", color: "#ff9800" },
+    { key: "Asisten Tim 3-A", color: "#ff9800" },
+    { key: "Asisten Tim 3-B", color: "#ff9800" },
+
+    { key: "Staf SPI Utama", color: "#fff176" },
+    { key: "Staf SPI Tim 3", color: "#fff176" }
+  ];
+
+  // === Data hubungan (edges) ===
+  const linkDataArray = [
+    { from: "Direktur Utama", to: "Kepala Divisi SPI" },
+
+    { from: "Kepala Divisi SPI", to: "Kepala Subdivisi Tim 1" },
+    { from: "Kepala Divisi SPI", to: "Kepala Subdivisi Tim 2" },
+    { from: "Kepala Divisi SPI", to: "Kepala Subdivisi Audit" },
+    { from: "Kepala Divisi SPI", to: "Kepala Subdivisi Tim 3" },
+
+    { from: "Kepala Subdivisi Tim 1", to: "Asisten Tim 1-A" },
+    { from: "Kepala Subdivisi Tim 1", to: "Asisten Tim 1-B" },
+
+    { from: "Kepala Subdivisi Tim 2", to: "Asisten Tim 2-A" },
+    { from: "Kepala Subdivisi Tim 2", to: "Asisten Tim 2-B" },
+
+    { from: "Kepala Subdivisi Audit", to: "Asisten Audit-A" },
+    { from: "Kepala Subdivisi Audit", to: "Asisten Audit-B" },
+
+    { from: "Kepala Subdivisi Tim 3", to: "Asisten Tim 3-A" },
+    { from: "Kepala Subdivisi Tim 3", to: "Asisten Tim 3-B" },
+
+    { from: "Asisten Tim 1-A", to: "Staf SPI Utama" },
+    { from: "Asisten Tim 1-B", to: "Staf SPI Utama" },
+    { from: "Asisten Tim 2-A", to: "Staf SPI Utama" },
+    { from: "Asisten Tim 2-B", to: "Staf SPI Utama" },
+    { from: "Asisten Audit-A", to: "Staf SPI Utama" },
+    { from: "Asisten Audit-B", to: "Staf SPI Utama" },
+
+    { from: "Asisten Tim 3-A", to: "Staf SPI Tim 3" },
+    { from: "Asisten Tim 3-B", to: "Staf SPI Tim 3" }
+  ];
+
+  diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+}
+
+window.addEventListener('DOMContentLoaded', init);
+</script>
+
 </body>
-
 </html>
