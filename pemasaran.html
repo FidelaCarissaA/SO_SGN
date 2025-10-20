@@ -141,7 +141,7 @@
   </nav>
 
   <h4>Struktur Organisasi</h4>
-  <h6>Divisi Satuan Pengawasan Intern (SPI)</h6>
+  <h6>Divisi Pemasaran dan Pelanggan</h6>
   <div id="myDiagramDiv"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -184,47 +184,44 @@
 
     // Node data
     const nodeDataArray = [
-      { key: "dirut", name: "Direktur Utama", color: "#007bff" },
-      { key: "spi", name: "Kepala Divisi Satuan Pengawasan Intern", color: "#4caf50" },
-      { key: "sub_tim1", name: "Kepala Sub Divisi SPI Tim 1", color: "#616161" },
-      { key: "sub_tim2", name: "Kepala Sub Divisi SPI Tim 2", color: "#616161" },
-      { key: "sub_audit", name: "Kepala Sub Divisi Manajemen Audit", color: "#616161" },
-      { key: "sub_tim3", name: "Kepala Sub Divisi SPI Tim 3", color: "#616161" },
-      { key: "ast_tim1_a", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim1_b", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim2_a", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_tim2_b", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_audit_a", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_audit_b", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_tim3_a", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "ast_tim3_b", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "staf_spi", name: "Staf SPI", color: "#000000" },
-      { key: "staf_tim3", name: "Staf SPI Tim 3", color: "#000000" }
-    ];
+      { key: "disdm", name: "Direktur SDM dan Teknologi Informasi", color: "#007bff" },
+      { key: "pemasaran", name: "Kepala Divisi Pemasaran dan Pelanggan", color: "#4caf50" },
+
+      { key: "sub_pem", name: "Kepala Sub Divisi Pemasaran", color: "#616161" },
+      { key: "sub_pel", name: "Kepala Sub Divisi Pelanggan", color: "#616161" },
+
+      { key: "ast_ap", name: "Asisten Analisa Pasar ", color: "#E65100" },
+      { key: "ast_mp", name: "Asisten Manajemen Pemasaran", color: "#E65100" },
+      { key: "ast_hp", name: "Asisten Hilirisasi Produk", color: "#E65100" },
+      { key: "ast_pp", name: "Asisten Pelanggan dan Petani", color: "#E65100" },
+      { key: "ast_pt", name: "Asisten Penjualan dan Tender", color: "#E65100" },
+     
+      { key: "staf_mp", name: "Staf Manajemen Pemasaran", color: "#000000" },
+      { key: "staf_sp", name: "Staf Site Produk", color: "#000000" },
+      { key: "staf_rp", name: "Staf Retail Produk", color: "#000000" },
+      { key: "staf_pp", name: "Staf Pelanggan dan Petani", color: "#000000" },
+      { key: "staf_pt", name: "Staf Penjualan Tender", color: "#000000" },
+]
 
     // Relasi
     const linkDataArray = [
-      { from: "dirut", to: "spi" },
-      { from: "spi", to: "sub_tim1" },
-      { from: "spi", to: "sub_tim2" },
-      { from: "spi", to: "sub_audit" },
-      { from: "spi", to: "sub_tim3" },
-      { from: "sub_tim1", to: "ast_tim1_a" },
-      { from: "sub_tim1", to: "ast_tim1_b" },
-      { from: "sub_tim2", to: "ast_tim2_a" },
-      { from: "sub_tim2", to: "ast_tim2_b" },
-      { from: "sub_audit", to: "ast_audit_a" },
-      { from: "sub_audit", to: "ast_audit_b" },
-      { from: "sub_tim3", to: "ast_tim3_a" },
-      { from: "sub_tim3", to: "ast_tim3_b" },
-      { from: "ast_tim1_a", to: "staf_spi" },
-      { from: "ast_tim1_b", to: "staf_spi" },
-      { from: "ast_tim2_a", to: "staf_spi" },
-      { from: "ast_tim2_b", to: "staf_spi" },
-      { from: "ast_audit_a", to: "staf_spi" },
-      { from: "ast_audit_b", to: "staf_spi" },
-      { from: "ast_tim3_a", to: "staf_tim3" },
-      { from: "ast_tim3_b", to: "staf_tim3" }
+      { from: "disdm", to: "pemasaran" },
+
+      { from: "pemasaran", to: "sub_pem" },
+      { from: "pemasaran", to: "sub_pel" },
+
+      { from: "sub_pem", to: "ast_ap" },
+      { from: "sub_pem", to: "ast_mp" },
+      { from: "sub_pem", to: "ast_hp" },
+      { from: "sub_pel", to: "ast_pp" },
+      { from: "sub_pel", to: "ast_pt" },
+
+      { from: "ast_mp" , to: "staf_mp" },
+      { from: "ast_hp" , to: "staf_sp" },
+      { from: "ast_hp" , to: "staf_rp" },
+      { from: "ast_pp" , to: "staf_pp" },
+      { from: "ast_pt" , to: "staf_pt" },
+   
     ];
 
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);

@@ -141,7 +141,7 @@
   </nav>
 
   <h4>Struktur Organisasi</h4>
-  <h6>Divisi Satuan Pengawasan Intern (SPI)</h6>
+  <h6>Divisi Hubungan Kelembagaan dan Hukum</h6>
   <div id="myDiagramDiv"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -184,47 +184,54 @@
 
     // Node data
     const nodeDataArray = [
-      { key: "dirut", name: "Direktur Utama", color: "#007bff" },
-      { key: "spi", name: "Kepala Divisi Satuan Pengawasan Intern", color: "#4caf50" },
-      { key: "sub_tim1", name: "Kepala Sub Divisi SPI Tim 1", color: "#616161" },
-      { key: "sub_tim2", name: "Kepala Sub Divisi SPI Tim 2", color: "#616161" },
-      { key: "sub_audit", name: "Kepala Sub Divisi Manajemen Audit", color: "#616161" },
-      { key: "sub_tim3", name: "Kepala Sub Divisi SPI Tim 3", color: "#616161" },
-      { key: "ast_tim1_a", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim1_b", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim2_a", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_tim2_b", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_audit_a", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_audit_b", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_tim3_a", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "ast_tim3_b", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "staf_spi", name: "Staf SPI", color: "#000000" },
-      { key: "staf_tim3", name: "Staf SPI Tim 3", color: "#000000" }
-    ];
+      { key: "mr", name: "Direktur Manajemen Risiko", color: "#007bff" },
+      { key: "hkm", name: "Kepala Divisi Hubungan Kelembagaan dan Hukum", color: "#4caf50" },
+
+      { key: "sub_hk", name: "Kepala Sub Divisi Hukum Perusahaan", color: "#616161" },
+      { key: "sub_lh", name: "Kepala Sub Divisi Layanan Hukum", color: "#616161" },
+      { key: "sub_hl", name: "Kepala Sub Divisi Hubungan Kelembagaan", color: "#616161" },
+      { key: "sub_nl", name: "Kepala Sub Divisi Non Litigasi", color: "#616161" },
+
+      { key: "ast_kb", name: "Asisten Kontrak Bisnis", color: "#E65100" },
+      { key: "ast_hp", name: "Asisten Hukum dan Peraturan", color: "#E65100" },
+      { key: "ast_l", name: "Asisten Litigasi", color: "#E65100" },
+      { key: "ast_la", name: "Asisten Legal Aset", color: "#E65100" },
+      { key: "ast_tjsl", name: "Asisten TJSL", color: "#E65100" },
+      { key: "ast_k", name: "Asisten Kelembagaan", color: "#E65100" },
+      { key: "ast_p", name: "Asisten Perizinan", color: "#E65100" },
+    
+      { key: "staf_hp", name: "Staf Hukum Perusahaan", color: "#000000" },
+      { key: "staf_lh", name: "Staf Layanan Hukum", color: "#000000" },
+      { key: "staf_hk", name: "Staf Hubungan Kelembagaan", color: "#000000" },
+      { key: "staf_nl", name: "Staf Non Ligitasi", color: "#000000" },
+]
+      
 
     // Relasi
     const linkDataArray = [
-      { from: "dirut", to: "spi" },
-      { from: "spi", to: "sub_tim1" },
-      { from: "spi", to: "sub_tim2" },
-      { from: "spi", to: "sub_audit" },
-      { from: "spi", to: "sub_tim3" },
-      { from: "sub_tim1", to: "ast_tim1_a" },
-      { from: "sub_tim1", to: "ast_tim1_b" },
-      { from: "sub_tim2", to: "ast_tim2_a" },
-      { from: "sub_tim2", to: "ast_tim2_b" },
-      { from: "sub_audit", to: "ast_audit_a" },
-      { from: "sub_audit", to: "ast_audit_b" },
-      { from: "sub_tim3", to: "ast_tim3_a" },
-      { from: "sub_tim3", to: "ast_tim3_b" },
-      { from: "ast_tim1_a", to: "staf_spi" },
-      { from: "ast_tim1_b", to: "staf_spi" },
-      { from: "ast_tim2_a", to: "staf_spi" },
-      { from: "ast_tim2_b", to: "staf_spi" },
-      { from: "ast_audit_a", to: "staf_spi" },
-      { from: "ast_audit_b", to: "staf_spi" },
-      { from: "ast_tim3_a", to: "staf_tim3" },
-      { from: "ast_tim3_b", to: "staf_tim3" }
+      { from: "mr", to: "hkm" },
+
+      { from: "hkm", to: "sub_hk" },
+      { from: "hkm", to: "sub_lh" },
+      { from: "hkm", to: "sub_hl" },
+      { from: "hkm", to: "sub_nl" },
+
+      { from: "sub_hk", to: "ast_kb" },
+      { from: "sub_hk", to: "ast_hp" },
+      { from: "sub_lh", to: "ast_l" },
+      { from: "sub_lh", to: "ast_la" },
+      { from: "sub_hl", to: "ast_tjsl" },
+      { from: "sub_hl", to: "ast_k" },
+      { from: "sub_nl", to: "ast_p" },
+     
+      { from: "ast_kb" , to: "staf_hp" },
+      { from: "ast_hp" , to: "staf_hp" },
+      { from: "ast_l" , to: "staf_lh" },
+      { from: "ast_la" , to: "staf_lh" },
+      { from: "ast_tjsl" , to: "staf_hk" },
+      { from: "ast_k" , to: "staf_hk" },
+      { from: "ast_p" , to: "staf_nl" },
+   
     ];
 
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);

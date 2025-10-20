@@ -141,7 +141,7 @@
   </nav>
 
   <h4>Struktur Organisasi</h4>
-  <h6>Divisi Satuan Pengawasan Intern (SPI)</h6>
+  <h6>Divisi Penelitian dan Pengembangan</h6>
   <div id="myDiagramDiv"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -184,47 +184,33 @@
 
     // Node data
     const nodeDataArray = [
-      { key: "dirut", name: "Direktur Utama", color: "#007bff" },
-      { key: "spi", name: "Kepala Divisi Satuan Pengawasan Intern", color: "#4caf50" },
-      { key: "sub_tim1", name: "Kepala Sub Divisi SPI Tim 1", color: "#616161" },
-      { key: "sub_tim2", name: "Kepala Sub Divisi SPI Tim 2", color: "#616161" },
-      { key: "sub_audit", name: "Kepala Sub Divisi Manajemen Audit", color: "#616161" },
-      { key: "sub_tim3", name: "Kepala Sub Divisi SPI Tim 3", color: "#616161" },
-      { key: "ast_tim1_a", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim1_b", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim2_a", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_tim2_b", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_audit_a", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_audit_b", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_tim3_a", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "ast_tim3_b", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "staf_spi", name: "Staf SPI", color: "#000000" },
-      { key: "staf_tim3", name: "Staf SPI Tim 3", color: "#000000" }
-    ];
+      { key: "ss", name: "Direktur Strategi dan Suistainability", color: "#007bff" },
+      { key: "pp", name: "Kepala Divisi Penelitian dan Pengembangan", color: "#4caf50" },
+
+      { key: "sub_on", name: "Kepala Sub Divisi Penelitian dan Pengembangan On Farm", color: "#616161" },
+      { key: "sub_off", name: "Kepala Sub Divisi Penelitian dan Pengembangan Off Farm", color: "#616161" },
+
+      { key: "ast_on", name: "Asisten Penelitian dan Pengembangan On Farm", color: "#E65100" },
+      { key: "ast_off", name: "Asisten Penelitian dan Pengembangan Off Farm", color: "#E65100" },
+    
+      { key: "staf_on", name: "Staf Penelitian dan Pengembangan On Farm", color: "#000000" },
+      { key: "staf_off", name: "Staf Penelitian dan Pengembangan Off Farm", color: "#000000" },
+]
+      
 
     // Relasi
     const linkDataArray = [
-      { from: "dirut", to: "spi" },
-      { from: "spi", to: "sub_tim1" },
-      { from: "spi", to: "sub_tim2" },
-      { from: "spi", to: "sub_audit" },
-      { from: "spi", to: "sub_tim3" },
-      { from: "sub_tim1", to: "ast_tim1_a" },
-      { from: "sub_tim1", to: "ast_tim1_b" },
-      { from: "sub_tim2", to: "ast_tim2_a" },
-      { from: "sub_tim2", to: "ast_tim2_b" },
-      { from: "sub_audit", to: "ast_audit_a" },
-      { from: "sub_audit", to: "ast_audit_b" },
-      { from: "sub_tim3", to: "ast_tim3_a" },
-      { from: "sub_tim3", to: "ast_tim3_b" },
-      { from: "ast_tim1_a", to: "staf_spi" },
-      { from: "ast_tim1_b", to: "staf_spi" },
-      { from: "ast_tim2_a", to: "staf_spi" },
-      { from: "ast_tim2_b", to: "staf_spi" },
-      { from: "ast_audit_a", to: "staf_spi" },
-      { from: "ast_audit_b", to: "staf_spi" },
-      { from: "ast_tim3_a", to: "staf_tim3" },
-      { from: "ast_tim3_b", to: "staf_tim3" }
+      { from: "ss", to: "pp" },
+
+      { from: "pp", to: "sub_on" },
+      { from: "pp", to: "sub_off" },
+
+      { from: "sub_on", to: "ast_on" },
+      { from: "sub_off", to: "ast_off" },
+      
+      { from: "ast_on" , to: "staf_on" },
+      { from: "ast_off" , to: "staf_off" },
+   
     ];
 
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);

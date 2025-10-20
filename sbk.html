@@ -141,7 +141,7 @@
   </nav>
 
   <h4>Struktur Organisasi</h4>
-  <h6>Divisi Satuan Pengawasan Intern (SPI)</h6>
+  <h6>Divisi Strategi Bisnis dan Keberlanjutan</h6>
   <div id="myDiagramDiv"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -184,47 +184,48 @@
 
     // Node data
     const nodeDataArray = [
-      { key: "dirut", name: "Direktur Utama", color: "#007bff" },
-      { key: "spi", name: "Kepala Divisi Satuan Pengawasan Intern", color: "#4caf50" },
-      { key: "sub_tim1", name: "Kepala Sub Divisi SPI Tim 1", color: "#616161" },
-      { key: "sub_tim2", name: "Kepala Sub Divisi SPI Tim 2", color: "#616161" },
-      { key: "sub_audit", name: "Kepala Sub Divisi Manajemen Audit", color: "#616161" },
-      { key: "sub_tim3", name: "Kepala Sub Divisi SPI Tim 3", color: "#616161" },
-      { key: "ast_tim1_a", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim1_b", name: "Asisten SPI Tim 1", color: "#E65100" },
-      { key: "ast_tim2_a", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_tim2_b", name: "Asisten SPI Tim 2", color: "#E65100" },
-      { key: "ast_audit_a", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_audit_b", name: "Asisten Audit", color: "#E65100" },
-      { key: "ast_tim3_a", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "ast_tim3_b", name: "Asisten SPI Tim 3", color: "#E65100" },
-      { key: "staf_spi", name: "Staf SPI", color: "#000000" },
-      { key: "staf_tim3", name: "Staf SPI Tim 3", color: "#000000" }
-    ];
+      { key: "ss", name: "Direktur Strategi dan Suistainability", color: "#007bff" },
+      { key: "sbk", name: "Kepala Divisi Strategi Bisnis dan Keberlanjutan", color: "#4caf50" },
+
+      { key: "sub_per", name: "Kepala Sub Divisi Perencanaan dan Pengembangan Bisnis", color: "#616161" },
+      { key: "sub_peng", name: "Kepala Sub Divisi Pengembangan dan Manajemen Aset", color: "#616161" },
+      { key: "sub_sm", name: "Kepala Sub Divisi Sistem Manajemen", color: "#616161" },
+
+      { key: "ast_ps", name: "Asisten Perencanaan Strategis", color: "#E65100" },
+      { key: "ast_pb", name: "Asisten Pengembangan Bisnis", color: "#E65100" },
+      { key: "ast_po", name: "Asisten Pengembangan dan Optimalisasi Aset", color: "#E65100" },
+      { key: "ast_ma", name: "Asisten Manajemen Aset", color: "#E65100" },
+      { key: "ast_sm", name: "Asisten Sistem Manajemen", color: "#E65100" },
+      { key: "ast_suis", name: "Asisten Suistainability", color: "#E65100" },
+    
+      { key: "staf_per", name: "Staf Perencanaan dan Pengembangan Bisnis", color: "#000000" },
+      { key: "staf_peng", name: "Staf Pengembangan dan Manajemen Aset", color: "#000000" },
+      { key: "staf_ms", name: "Staf Manajemen dan Suistainability", color: "#000000" },
+]
+      
 
     // Relasi
     const linkDataArray = [
-      { from: "dirut", to: "spi" },
-      { from: "spi", to: "sub_tim1" },
-      { from: "spi", to: "sub_tim2" },
-      { from: "spi", to: "sub_audit" },
-      { from: "spi", to: "sub_tim3" },
-      { from: "sub_tim1", to: "ast_tim1_a" },
-      { from: "sub_tim1", to: "ast_tim1_b" },
-      { from: "sub_tim2", to: "ast_tim2_a" },
-      { from: "sub_tim2", to: "ast_tim2_b" },
-      { from: "sub_audit", to: "ast_audit_a" },
-      { from: "sub_audit", to: "ast_audit_b" },
-      { from: "sub_tim3", to: "ast_tim3_a" },
-      { from: "sub_tim3", to: "ast_tim3_b" },
-      { from: "ast_tim1_a", to: "staf_spi" },
-      { from: "ast_tim1_b", to: "staf_spi" },
-      { from: "ast_tim2_a", to: "staf_spi" },
-      { from: "ast_tim2_b", to: "staf_spi" },
-      { from: "ast_audit_a", to: "staf_spi" },
-      { from: "ast_audit_b", to: "staf_spi" },
-      { from: "ast_tim3_a", to: "staf_tim3" },
-      { from: "ast_tim3_b", to: "staf_tim3" }
+      { from: "ss", to: "sbk" },
+
+      { from: "sbk", to: "sub_per" },
+      { from: "sbk", to: "sub_peng" },
+      { from: "sbk", to: "sub_sm" },
+
+      { from: "sub_per", to: "ast_ps" },
+      { from: "sub_per", to: "ast_pb" },
+      { from: "sub_peng", to: "ast_po" },
+      { from: "sub_peng", to: "ast_ma" },
+      { from: "sub_sm", to: "ast_sm" },
+      { from: "sub_sm", to: "ast_suis" },
+      
+      { from: "ast_ps" , to: "staf_per" },
+      { from: "ast_pb" , to: "staf_per" },
+      { from: "ast_po" , to: "staf_peng" },
+      { from: "ast_ma" , to: "staf_peng" },
+      { from: "ast_sm" , to: "staf_ms" },
+      { from: "ast_suis" , to: "staf_ms" },     
+   
     ];
 
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
