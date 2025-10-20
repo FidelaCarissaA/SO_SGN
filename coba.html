@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/gojs/release/go.js"></script>
+</head>
+<body>
+<div id="myDiagramDiv" style="width:100%; height:600px; border:1px solid black"></div>
+
+<script>
+  const $ = go.GraphObject.make;
+
+  // Diagram utama: layout vertikal dari atas ke bawah
+  const diagram = $(go.Diagram, "myDiagramDiv", {
+    layout: $(go.TreeLayout, { angle: 90, layerSpacing: 80 })
+  });
+
+  // Template Node standar
+  diagram.nodeTemplate =
+    $(go.Node, "Auto",
+      $(go.Shape, "RoundedRectangle",
+        { fill: "white", stroke: "gray", strokeWidth: 1 }),
+      $(go.TextBlock,
+        { margin: 8, font: "bold 12px Poppins", textAlign: "center" },
+        new go.Binding("text", "key"))
+    );
+
+  // Template Group: bagian dengan layout horizontal
+  diagram.groupTemplate =
+    $(go.Group, "Auto",
+      { layout: $(go.LayeredDigraphLayout, { direction: 0, layerSpacing: 40, columnSpacing: 30 }) },
+      $(go.Shape, "RoundedRectangle", { fill: "#f8f8f8", stroke: "#007acc", strokeWidth: 1 }),
+      $(go.Panel, "Vertical",
+        { margin: 10 },
+        $(go.TextBlock,
+          { font: "bold 13px Poppins", stroke: "#007acc", margin: new go.Margin(0, 0, 6, 0) },
+          new go.Binding("text", "key")),
+        $(go.Placeholder, { padding: 10 })
+      )
+    );
+
+  // Data model: General Manager → Group Manajer Keuangan & Umum → Asisten
+  diagram.model = new go.GraphLinksModel(
+    [
+      { key: "General Manager", color: "#ffcc00" },
+      { key: "Manajer Keuangan & Umum", isGroup: true },
+      { key: "Asisten Manajer Akuntansi & Admin Hasil", group: "Manajer Keuangan & Umum" },
+      { key: "Asisten Manajer SDM, Umum & Pengadaan", group: "Manajer Keuangan & Umum" },
+      { key: "Asisten Manajer Keuangan", group: "Manajer Keuangan & Umum" },
+      { key: "Asisten Manajer Gudang", group: "Manajer Keuangan & Umum" }
+    ],
+    [
+      { from: "General Manager", to: "Manajer Keuangan & Umum" }
+    ]
+  );
+</script>
+</body>
+</html>

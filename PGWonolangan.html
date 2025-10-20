@@ -144,7 +144,7 @@
   </nav>
 
   <h4>Struktur Organisasi</h4>
-  <h6>Divisi Perbendaharaan dan Anggaran</h6>
+  <h6>Pabrik Gula Wonolangan</h6>
   <div id="myDiagramDiv"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -187,70 +187,60 @@
 
     // Node data
     const nodeDataArray = [
-      { key: "dikeu", name: "Direktur Keuangan", color: "#007bff" },
-      { key: "bendahara", name: "Kepala Divisi Perbendaharaan dan Anggaran", color: "#4caf50" },
+        { key: "gm", name: "General Manajer", color: "#E65100" },
+        { key: "mnjr_mqa", name: "Manajer Quality Assurance", color: "#007bff" },
+        { key: "mnjr_mku", name: "Manajer Keuangan & Umum", color: "#007bff" },
+        { key: "mnjr_mi", name: "Manajer Instalasi", color: "#007bff" },
+        { key: "mnjr_mp", name: "Manajer Pengolahan", color: "#007bff" },
+        { key: "mnjr_mt", name: "Manajer Tanaman", color: "#007bff" },
 
-      { key: "sub_pa", name: "Kepala Sub Divisi Perencanaan Anggaran", color: "#616161" },
-      { key: "sub_mk", name: "Kepala Sub Divisi Manajemen Keuangan", color: "#616161" },
-      { key: "sub_hps", name: "Kepala Sub Divisi Harga Perkiraan Sendiri", color: "#616161" },
-      { key: "sub_ks", name: "Kepala Sub Divisi Keuangan Strategis", color: "#616161" },
-
-      { key: "ast_per", name: "Asisten Perencanaan Anggaran ", color: "#E65100" },
-      { key: "ast_peng1", name: "Asisten Pengendalian Anggaran I", color: "#E65100" },
-      { key: "ast_peng2", name: "Asisten Pengendalian Anggaran II ", color: "#E65100" },
-      { key: "ast_mk", name: "Asisten Manajemen Keuangan", color: "#E65100" },
-      { key: "ast_ok", name: "Asisten Operasional Keuangan ", color: "#E65100" },
-      { key: "ast_hps1", name: "Asisten HPS I", color: "#E65100" },
-      { key: "ast_hps2", name: "Asisten HPS II", color: "#E65100" },
-      { key: "ast_hps3", name: "Asisten HPS III", color: "#E65100" },
-      { key: "ast_ks", name: "Asisten Keuangan strategis", color: "#E65100" },
-     
-      { key: "staf_per", name: "Staf Perencanaan Anggaran", color: "#000000" },
-      { key: "staf_peng1", name: "Staf Pengendalian Anggaran I", color: "#000000" },
-      { key: "staf_peng2", name: "Staf Pengendalian Anggaran II", color: "#000000" },
-      { key: "staf_mk", name: "Staf Manajemen Keuangan", color: "#000000" },
-      { key: "staf_pe1", name: "Staf Pembiyaan External I", color: "#000000" },
-      { key: "staf_pe2", name: "Staf Pembiyaan External II", color: "#000000" },
-      { key: "staf_arsip", name: "Arsip / Dokumentasi", color: "#000000" },
-      { key: "staf_hps1", name: "Staf HPS", color: "#000000" },
-      { key: "staf_hps2", name: "Staf HPS", color: "#000000" },
-      { key: "staf_ks", name: "Staf Keuangan Strategis", color: "#000000" },
-    ];
+      { key: "ast_on", name: "Asisten Manajer QA On Farm", color: "#616161" },
+      { key: "ast_off", name: "Asisten Manajer QA Off Farm", color: "#616161" },
+      { key: "ast_akun", name: "Asisten Manajer Akuntansi & Admin Hasil", color: "#616161" },
+      { key: "ast_gud", name: "Asisten Manajer Gudang", color: "#616161" },
+      { key: "ast_keu", name: "Asisten Manajer Keuangan", color: "#616161" },
+      { key: "ast_sdm", name: "Asisten Manajer SDM, Umum, & Pengadaan", color: "#616161" },
+      { key: "ast_sg", name: "Asisten Manajer Stasiun Gilingan", color: "#616161" },
+      { key: "ast_sb", name: "Asisten Manajer Stasiun Boiler", color: "#616161" },
+      { key: "ast_sli", name: "Asisten Manajer Stasiun Listrik dan Instrument", color: "#616161" },
+      { key: "ast_tsb", name: "Asisten Manajer Teknik Sipil & Besali", color: "#616161" },
+      { key: "ast_spem", name: "Asisten Manajer Stasiun Pemurnian", color: "#616161" },
+      { key: "ast_spenglim", name: "Asisten Manajer Stasiun Penguapan & Limbah", color: "#616161" },
+      { key: "ast_smas", name: "Asisten Manajer Stasiun Masakan", color: "#616161" },
+      { key: "ast_sput", name: "Asisten Manajer Stasiun Putaran & Pengemasan", color: "#616161" },
+      { key: "ast_ts", name: "Asisten Manajer Areal Budidaya TS", color: "#616161" },
+      { key: "ast_tma", name: "Asisten Manajer TMA", color: "#616161" },
+      { key: "ast_tr", name: "Asisten Manajer Areal Budidaya TR", color: "#616161" },
+    
+]
+      
 
     // Relasi
     const linkDataArray = [
-      { from: "dikeu", to: "bendahara" },
+      { from: "gm", to: "mnjr_mqa" },
+      { from: "gm", to: "mnjr_mku" },
+      { from: "gm", to: "mnjr_mi" },
+      { from: "gm", to: "mnjr_mp" },
+      { from: "gm", to: "mnjr_mt" },
 
-      { from: "bendahara", to: "sub_pa" },
-      { from: "bendahara", to: "sub_mk" },
-      { from: "bendahara", to: "sub_hps" },
-      { from: "bendahara", to: "sub_ks" },
-
-      { from: "sub_pa", to: "ast_per" },
-      { from: "sub_pa", to: "ast_peng1" },
-      { from: "sub_pa", to: "ast_peng2" },
-      { from: "sub_mk", to: "ast_mk" },
-      { from: "sub_mk", to: "ast_ok" },
-      { from: "sub_hps", to: "ast_hps1" },
-      { from: "sub_hps", to: "ast_hps2" },
-      { from: "sub_hps", to: "ast_hps3" },
-      { from: "sub_ks", to: "ast_ks" },
-
-      { from: "ast_per" , to: "staf_per" },
-      { from: "ast_peng1" , to: "staf_peng1" },
-      { from: "ast_peng2" , to: "staf_peng2" },
-      { from: "ast_peng3" , to: "staf_peng3" },
-      { from: "ast_mk", to: "staf_mk"},
-      { from: "ast_ok", to: "staf_pe1"},
-      { from: "ast_ok", to: "staf_pe2"},
-      { from: "ast_ok", to: "staf_arsip"},
-      { from: "ast_hps1", to: "staf_hps1"},
-      { from: "ast_hps2", to: "staf_hps1"},
-      { from: "ast_hps3", to: "staf_hps1"},
-      { from: "ast_hps1", to: "staf_hps2"},
-      { from: "ast_hps2", to: "staf_hps2"},
-      { from: "ast_hps3", to: "staf_hps2"},
-      { from: "ast_ks", to: "staf_ks"},
+      { from: "mnjr_mqa", to: "ast_on" },
+      { from: "mnjr_mqa", to: "ast_off" },
+      { from: "mnjr_mku", to: "ast_akun" },
+      { from: "mnjr_mku", to: "ast_gud" },
+      { from: "mnjr_mku", to: "ast_keu" },
+      { from: "mnjr_mku", to: "ast_sdm" },
+      { from: "mnjr_mi", to: "ast_sg" },
+      { from: "mnjr_mi", to: "ast_sb" },
+      { from: "mnjr_mi", to: "ast_sli" },
+      { from: "mnjr_mi", to: "ast_tsb" },
+      { from: "mnjr_mp", to: "ast_spem" },
+      { from: "mnjr_mp", to: "ast_spenglim" },
+      { from: "mnjr_mp", to: "ast_smas" },
+      { from: "mnjr_mp", to: "ast_sput" },
+      { from: "mnjr_mt", to: "ast_ts" },
+      { from: "mnjr_mt", to: "ast_tma" },
+      { from: "mnjr_mt", to: "ast_tr" },
+         
     ];
 
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
