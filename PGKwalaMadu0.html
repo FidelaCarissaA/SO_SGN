@@ -102,8 +102,6 @@
             <button class="dropdown-toggle" data-bs-toggle="dropdown">Pabrik Gula</button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="PGKwalaMadu.html">PG Kwala Madu</a></li>
-              <li><a class="dropdown-item" href="PGKwalaMadu0.html">PG Kwala Madu - 0</a></li>
-              <li><a class="dropdown-item" href="PGKwalaMaduGroup.html">PG Kwala Madu - Group</a></li>
               <li><a class="dropdown-item" href="PGSeiSemayang.html">PG Sei Semayang</a></li>
               <li><a class="dropdown-item" href="PGBungaMayang.html">PG Bunga Mayang</a></li>
               <li><a class="dropdown-item" href="PGCintaManis.html">PG Cinta Manis</a></li>
@@ -155,7 +153,7 @@
     const $ = go.GraphObject.make;
 
     const diagram = $(go.Diagram, "myDiagramDiv", {
-      layout: $(go.LayeredDigraphLayout, { direction: 90, layerSpacing: 60, columnSpacing: 40 }),
+      layout: $(go.LayeredDigraphLayout, { direction: 0, layerSpacing: 60, columnSpacing: 40 }),
       "undoManager.isEnabled": true,
       initialAutoScale: go.Diagram.Uniform,   // fit otomatis ke layar
       allowZoom: true,
